@@ -19,33 +19,41 @@ class FeedView(
 ) : PlatformView {
     private val container: LinearLayout = QBKJ.getEmptyContainer()
     private var methodChannel: MethodChannel? =
-        MethodChannel(messenger, Constant.splashAdView + "_" + id)
+        MethodChannel(messenger, Constant.feedAdView + "_" + id)
 
     init {
         methodChannel?.invokeMethod("initializing", null)
         val adId = creationParams!!["id"] as String?
+        val width = creationParams["width"] as Double
+        val height = creationParams["height"] as Double
         val config = TbFeedConfig.Builder()
             .codeId(adId) //平台申请的代码位id
+            .viewWidth(width.toInt())
+            .viewHigh(height.toInt())
             .build()
         TbManager.loadFeed(config, QBKJ.activity, object : TbManager.FeedLoadListener() {
             override fun onLoad(p0: FeedPosition?) {
                 super.onLoad(p0)
                 p0?.showFeed(QBKJ.activity, container)
             }
-            override fun onFail(p0: String?) {
-                TODO("Not yet implemented")
+            override fun onExposure() {
+                methodChannel?.invokeMethod("onShow", null)
+                super.onExposure()
+            }
+
+            override fun onFail(s: String) {
+                methodChannel?.invokeMethod("onError", s)
+                container.removeAllViews()
             }
 
             override fun onDismiss() {
-                TODO("Not yet implemented")
+                methodChannel?.invokeMethod("onDismiss", null)
+                container.removeAllViews()
             }
-
             override fun onVideoReady() {
-                TODO("Not yet implemented")
             }
 
             override fun onVideoComplete() {
-                TODO("Not yet implemented")
             }
 
         })

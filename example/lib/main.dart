@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qbkj_mob/qbkj.dart';
+import 'package:qbkj_mob_example/pages/feed_page.dart';
 
 import 'pages/banner_page.dart';
 import 'pages/splash_page.dart';
@@ -73,19 +74,19 @@ class App extends StatelessWidget {
               );
             },
           ),
-          // MaterialButton(
-          //   color: Colors.blue,
-          //   textColor: Colors.white,
-          //   child: const Text('信息流广告'),
-          //   onPressed: () async {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(
-          //         builder: (context) => const NativePage(),
-          //       ),
-          //     );
-          //   },
-          // ),
+          MaterialButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            child: const Text('信息流广告'),
+            onPressed: () async {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const FeedPage(),
+                ),
+              );
+            },
+          ),
           // MaterialButton(
           //   color: Colors.blue,
           //   textColor: Colors.white,
