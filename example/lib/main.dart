@@ -87,68 +87,52 @@ class App extends StatelessWidget {
               );
             },
           ),
-          // MaterialButton(
-          //   color: Colors.blue,
-          //   textColor: Colors.white,
-          //   child: const Text('插屏广告'),
-          //   onPressed: () async {
-          //     GTAds.insertAd(
-          //       codes: [
-          //         GTAdsCode(
-          //           alias: "XTW",
-          //           probability: 5,
-          //           androidId: "11087",
-          //           iosId: "",
-          //         )
-          //       ],
-          //       timeout: 1000,
-          //       callBack: GTAdsCallBack(
-          //         onShow: (adCode) {
-          //           print('插屏广告 onShow $adCode');
-          //         },
-          //         onClick: (adCode) {
-          //           print('插屏广告 onClick $adCode');
-          //         },
-          //         onClose: (adCode) {
-          //           print('插屏广告 onClose $adCode');
-          //         },
-          //       ),
-          //     );
-          //   },
-          // ),
-          // MaterialButton(
-          //   color: Colors.blue,
-          //   textColor: Colors.white,
-          //   child: const Text('激励广告'),
-          //   onPressed: () async {
-          //     GTAds.rewardAd(
-          //       codes: [
-          //         GTAdsCode(
-          //           alias: "XTW",
-          //           probability: 5,
-          //           androidId: "1028",
-          //           iosId: "",
-          //         )
-          //       ],
-          //       timeout: 1000,
-          //       callBack: GTAdsCallBack(
-          //         onShow: (adCode) {
-          //           print('激励广告 onShow $adCode');
-          //         },
-          //         onClick: (adCode) {
-          //           print('激励广告 onClick $adCode');
-          //         },
-          //         onClose: (adCode) {
-          //           print('激励广告 onClose $adCode');
-          //         },
-          //         onVerify: (GTAdsCode adCode, bool verify,
-          //             String transId, String rewardName, int rewardAmount) {
-          //           print('激励广告 onVerify $adCode');
-          //         },
-          //       ),
-          //     );
-          //   },
-          // ),
+          MaterialButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            child: const Text('插屏广告'),
+            onPressed: () async {
+              QBKJAd.insertAd(
+                '1330513058157576258',
+                callback: QBKJCallback(
+                  onShow: () {
+                    print('插屏广告 onShow');
+                  },
+                  onClick: () {
+                    print('插屏广告 onClick');
+                  },
+                  onClose: () {
+                    print('插屏广告 onClose');
+                  },
+                ),
+              );
+            },
+          ),
+          MaterialButton(
+            color: Colors.blue,
+            textColor: Colors.white,
+            child: const Text('激励广告'),
+            onPressed: () async {
+              QBKJAd.rewardAd(
+                '1330515047692124225',
+                userId: 'userId',
+                callback: QBKJCallback(
+                  onShow: () {
+                    print('激励广告 onShow');
+                  },
+                  onClick: () {
+                    print('激励广告 onClick');
+                  },
+                  onClose: () {
+                    print('激励广告 onClose');
+                  },
+                  onReward: () {
+                    print('激励广告 onReward');
+                  },
+                ),
+              );
+            },
+          ),
         ],
       ),
     );

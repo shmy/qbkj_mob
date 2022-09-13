@@ -5,11 +5,13 @@ class QBKJCallback {
   final VoidCallback? onClick;
   final VoidCallback? onFail;
   final VoidCallback? onClose;
+  final VoidCallback? onReward;
 
   QBKJCallback({
     this.onShow,
     this.onClick,
     this.onFail,
     this.onClose,
+    this.onReward,
   });
 }
