@@ -48,6 +48,7 @@ object QBKJ {
     fun insertAd(adCode: String, queuingEventSink: QueuingEventSink) {
         val config = TbInteractionConfig.Builder()
             .codeId(adCode) //平台申请的代码位id
+            .orientation(TbManager.Orientation.VIDEO_VERTICAL) //必填参数，期望视频的播放方向：VIDEO_HORIZONTAL 或 VIDEO_VERTICAL
             .build()
         TbManager.loadInteraction(config, activity, object : InteractionLoadListener() {
             override fun onFail(s: String) {
@@ -99,7 +100,7 @@ object QBKJ {
             .userId(userId) //必填参数，用户ID或者设备唯一标识（服务器回调时也需要）
 //            .callExtraData("extraData") //服务器回调额外信息（可不填）
             .playNow(true) //是否立即播放
-            .orientation(TbManager.Orientation.VIDEO_HORIZONTAL) //必填参数，期望视频的播放方向：VIDEO_HORIZONTAL 或 VIDEO_VERTICAL
+            .orientation(TbManager.Orientation.VIDEO_VERTICAL) //必填参数，期望视频的播放方向：VIDEO_HORIZONTAL 或 VIDEO_VERTICAL
             .build()
         TbManager.loadRewardVideo(config, activity, object : TbManager.RewardVideoLoadListener() {
             override fun onClick() {
