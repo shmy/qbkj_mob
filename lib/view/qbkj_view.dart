@@ -86,7 +86,6 @@ class _QBKJViewState extends State<QBKJView> {
   }
 
   Future<dynamic> _platformCallHandler(MethodCall call) async {
-    print('111 $call');
     switch (call.method) {
       case "onShow":
         setState(() {
