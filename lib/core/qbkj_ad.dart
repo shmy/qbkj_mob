@@ -15,6 +15,9 @@ class QBKJAd {
     return await _methodChannel.invokeMethod('initAd', {"id": appId});
   }
 
+  static Future<void> shortVideo(String adCode, String backText) async {
+    await _methodChannel.invokeMethod('shortVideo', {"id": adCode, "backText": backText});
+  }
   static Future<void> insertAd(String adCode, {QBKJCallback? callback}) async {
     late final StreamSubscription streamSubscription;
     streamSubscription = StreamHandler.listen(

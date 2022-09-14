@@ -1,5 +1,6 @@
 package tech.shmy.qbkj_mob
 
+import android.content.Intent
 import androidx.annotation.NonNull
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
@@ -10,6 +11,7 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
+import tech.shmy.qbkj_mob.activity.QBKJShortVideoActivity
 import tech.shmy.qbkj_mob.view.banner.BannerViewFactory
 import tech.shmy.qbkj_mob.view.feed.FeedViewFactory
 import tech.shmy.qbkj_mob.view.splash.SplashViewFactory
@@ -55,6 +57,13 @@ class QbkjMobPlugin : FlutterPlugin, MethodCallHandler, EventChannel.StreamHandl
             }
             Constant.rewardAd -> {
                 QBKJ.rewardAd(call.argument<String>("id").toString(), call.argument<String>("userId").toString(), queuingEventSink)
+            }
+            Constant.shortVideo -> {
+                val intent = Intent(QBKJ.context, QBKJShortVideoActivity::class.java).apply {
+                    putExtra("adCode", call.argument<String>("id").toString())
+                    putExtra("backText", call.argument<String>("backText").toString())
+                }
+                QBKJ.activity.startActivity(intent)
             }
             else -> {
                 result.notImplemented()

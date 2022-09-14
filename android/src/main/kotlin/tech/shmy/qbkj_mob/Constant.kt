@@ -10,4 +10,5 @@ object Constant {
     const val initAd = "initAd"
     const val insertAd = "insertAd"
     const val rewardAd = "rewardAd"
+    const val shortVideo = "shortVideo"
 }

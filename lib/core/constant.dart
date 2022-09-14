@@ -6,4 +6,5 @@ abstract class Constant {
   static const String feedAdView = "qbkj_feed_view";
   static const String insertAd = "insertAd";
   static const String rewardAd = "rewardAd";
+  static const String shortVideo = "shortVideo";
 }
