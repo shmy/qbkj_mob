@@ -16,9 +16,11 @@ class QBKJAd {
   }
 
   static Future<void> shortVideo(String adCode, String backText) async {
-    await _methodChannel.invokeMethod('shortVideo', {"id": adCode, "backText": backText});
+    await _methodChannel
+        .invokeMethod('shortVideo', {"id": adCode, "backText": backText});
   }
-  static Future<void> insertAd(String adCode, {QBKJCallback? callback}) async {
+
+  static void insertAd(String adCode, {QBKJCallback? callback}) {
     late final StreamSubscription streamSubscription;
     streamSubscription = StreamHandler.listen(
         insertAdCallBack: QBKJCallback(
@@ -33,14 +35,14 @@ class QBKJAd {
         streamSubscription.cancel();
       },
     ));
-    await _methodChannel.invokeMethod('insertAd', {"id": adCode});
+    _methodChannel.invokeMethod('insertAd', {"id": adCode});
   }
 
-  static Future<void> rewardAd(
+  static void rewardAd(
     String adCode, {
     required String userId,
     QBKJCallback? callback,
-  }) async {
+  }) {
     late final StreamSubscription streamSubscription;
     streamSubscription = StreamHandler.listen(
         rewardAdCallbck: QBKJCallback(
@@ -56,7 +58,7 @@ class QBKJAd {
       },
       onReward: callback?.onReward,
     ));
-    await _methodChannel.invokeMethod('rewardAd', {
+    _methodChannel.invokeMethod('rewardAd', {
       "id": adCode,
       "userId": userId,
     });

@@ -106,7 +106,7 @@ object QBKJ {
             override fun onClick() {
                 queuingEventSink.success(
                     mapOf(
-                        "type" to Constant.insertAd,
+                        "type" to Constant.rewardAd,
                         "event" to "onClick",
                     )
                 )
@@ -116,7 +116,7 @@ object QBKJ {
             override fun onExposure(p0: String?) {
                 queuingEventSink.success(
                     mapOf(
-                        "type" to Constant.insertAd,
+                        "type" to Constant.rewardAd,
                         "event" to "onShow",
                     )
                 )
@@ -129,7 +129,7 @@ object QBKJ {
             override fun onFail(p0: String?) {
                 queuingEventSink.success(
                     mapOf(
-                        "type" to Constant.insertAd,
+                        "type" to Constant.rewardAd,
                         "event" to "onError",
                     )
                 )
@@ -138,7 +138,7 @@ object QBKJ {
             override fun onClose() {
                 queuingEventSink.success(
                     mapOf(
-                        "type" to Constant.insertAd,
+                        "type" to Constant.rewardAd,
                         "event" to "onDismiss",
                     )
                 )
