@@ -36,15 +36,15 @@ class QbkjMobPlugin : FlutterPlugin, MethodCallHandler, EventChannel.StreamHandl
         flutterPluginBinding.platformViewRegistry.registerViewFactory(
             Constant.bannerAdView,
             BannerViewFactory(flutterPluginBinding.binaryMessenger)
-        );
+        )
         flutterPluginBinding.platformViewRegistry.registerViewFactory(
             Constant.splashAdView,
             SplashViewFactory(flutterPluginBinding.binaryMessenger)
-        );
+        )
         flutterPluginBinding.platformViewRegistry.registerViewFactory(
             Constant.feedAdView,
             FeedViewFactory(flutterPluginBinding.binaryMessenger)
-        );
+        )
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
