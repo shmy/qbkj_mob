@@ -2,6 +2,7 @@
     package="tech.shmy.qbkj_mob_example">
 
     <application
+        android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:label="qbkj_mob_example">
