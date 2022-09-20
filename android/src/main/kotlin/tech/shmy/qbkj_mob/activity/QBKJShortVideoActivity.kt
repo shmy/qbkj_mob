@@ -4,8 +4,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
-import com.kwad.sdk.api.KsContentPage
-import com.tb.mob.TbVideoManager
 import com.tb.mob.bean.VideoTypeEnum
 import tech.shmy.qbkj_mob.R
 
@@ -25,24 +23,24 @@ class QBKJShortVideoActivity : FragmentActivity() {
             }
         }
 
-        TbVideoManager.replaceFrameLayout4Video(
-            this,
-            extras.getString("adCode"),
-            "",
-            "",
-            object : TbVideoManager.IReplaceListener {
-                override fun onFail(s: String) {}
-                override fun getContentPage(contentPage: KsContentPage) {
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.fragment_container, contentPage.fragment)
-                        .commitAllowingStateLoss()
-                }
-
-                override fun onVideoPlayStart(videoTypeEnum: VideoTypeEnum) {}
-                override fun onVideoPlayPaused(videoTypeEnum: VideoTypeEnum) {}
-                override fun onVideoPlayResume(videoTypeEnum: VideoTypeEnum) {}
-                override fun onVideoPlayCompleted(videoTypeEnum: VideoTypeEnum) {}
-                override fun onPageLeave(videoTypeEnum: VideoTypeEnum) {}
-            })
+//        TbVideoManager.replaceFrameLayout4Video(
+//            this,
+//            extras.getString("adCode"),
+//            "",
+//            "",
+//            object : TbVideoManager.IReplaceListener {
+//                override fun onFail(s: String) {}
+//                override fun getContentPage(contentPage: KsContentPage) {
+//                    supportFragmentManager.beginTransaction()
+//                        .replace(R.id.fragment_container, contentPage.fragment)
+//                        .commitAllowingStateLoss()
+//                }
+//
+//                override fun onVideoPlayStart(videoTypeEnum: VideoTypeEnum) {}
+//                override fun onVideoPlayPaused(videoTypeEnum: VideoTypeEnum) {}
+//                override fun onVideoPlayResume(videoTypeEnum: VideoTypeEnum) {}
+//                override fun onVideoPlayCompleted(videoTypeEnum: VideoTypeEnum) {}
+//                override fun onPageLeave(videoTypeEnum: VideoTypeEnum) {}
+//            })
     }
 }
