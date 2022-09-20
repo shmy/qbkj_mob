@@ -1,7 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="tech.shmy.qbkj_mob_example">
 
     <application
+        tools:replace="android:label"
         android:usesCleartextTraffic="true"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
@@ -78,14 +80,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- 短视频开始-->
-        <activity
-            android:name="tech.shmy.qbkj_mob.activity.QBKJShortVideoActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-        <!-- 短视频结束-->
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data

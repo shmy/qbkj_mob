@@ -9,13 +9,4 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
-    <application>
-        <activity
-            android:name=".activity.QBKJShortVideoActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:configChanges="keyboard|orientation|screenSize"
-            android:screenOrientation="portrait"
-            android:exported="false" />
-    </application>
-
 </manifest>

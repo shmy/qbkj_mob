@@ -90,14 +90,6 @@ class App extends StatelessWidget {
           MaterialButton(
             color: Colors.blue,
             textColor: Colors.white,
-            child: const Text('短视频'),
-            onPressed: () async {
-              QBKJAd.shortVideo('1400375964994650194', '返回App');
-            },
-          ),
-          MaterialButton(
-            color: Colors.blue,
-            textColor: Colors.white,
             child: const Text('插屏广告'),
             onPressed: () async {
               QBKJAd.insertAd(
