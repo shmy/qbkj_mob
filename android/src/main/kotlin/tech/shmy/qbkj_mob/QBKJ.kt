@@ -10,7 +10,6 @@ import com.tb.mob.bean.RewardPosition
 import com.tb.mob.config.TbInitConfig
 import com.tb.mob.config.TbInteractionConfig
 import com.tb.mob.config.TbRewardVideoConfig
-import com.tb.mob.utils.RequestPermission
 import io.flutter.plugin.common.MethodChannel
 
 
@@ -43,6 +42,7 @@ object QBKJ {
                 result.success(true)
             }
         })
+        result.success(true)
     }
 
     fun insertAd(adCode: String, queuingEventSink: QueuingEventSink) {
