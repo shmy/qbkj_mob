@@ -32,21 +32,31 @@ class SplashView(
             .viewWidth(width.toInt())
             .viewHigh(height.toInt())
             .build()
-        TbManager.loadSplash(config, QBKJ.activity, object : SplashLoadListener() {
+        TbManager.loadSplash(config, QBKJ.activity, object : SplashLoadListener {
 
             override fun onClicked() {
                 methodChannel?.invokeMethod("onClick", null)
-                super.onClicked()
             }
 
             override fun onExposure() {
                 methodChannel?.invokeMethod("onShow", null)
-                super.onExposure()
             }
 
             override fun onFail(s: String) {
                 methodChannel?.invokeMethod("onError", s)
                 container.removeAllViews()
+            }
+
+            override fun onSkip() {
+                methodChannel?.invokeMethod("onSkip", null)
+            }
+
+            override fun onTick(p0: Long) {
+
+            }
+
+            override fun onTimeOver() {
+                methodChannel?.invokeMethod("onTimeOver", null)
             }
 
             override fun onDismiss() {

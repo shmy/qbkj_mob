@@ -31,19 +31,21 @@ class FeedView(
             .viewWidth(width.toInt())
             .viewHigh(height.toInt())
             .build()
-        TbManager.loadFeed(config, QBKJ.activity, object : TbManager.FeedLoadListener() {
+        TbManager.loadFeed(config, QBKJ.activity, object : TbManager.FeedLoadListener {
             override fun onLoad(p0: FeedPosition?) {
-                super.onLoad(p0)
                 p0?.showFeed(QBKJ.activity, container)
             }
             override fun onExposure() {
                 methodChannel?.invokeMethod("onShow", null)
-                super.onExposure()
             }
 
             override fun onFail(s: String) {
                 methodChannel?.invokeMethod("onError", s)
                 container.removeAllViews()
+            }
+
+            override fun onClicked() {
+                methodChannel?.invokeMethod("onClick", null)
             }
 
             override fun onDismiss() {

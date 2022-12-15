@@ -40,9 +40,6 @@ class _QBKJViewState extends State<QBKJView> {
 
   @override
   Widget build(BuildContext context) {
-    if (Platform.isAndroid) {
-      return const SizedBox();
-    }
     if (isDismissed) {
       return const SizedBox();
     }

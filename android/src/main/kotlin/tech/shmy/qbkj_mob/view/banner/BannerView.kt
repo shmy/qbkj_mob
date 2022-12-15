@@ -21,6 +21,7 @@ class BannerView(
         MethodChannel(messenger, Constant.bannerAdView + "_" + id)
 
     init {
+        System.out.println(creationParams)
         methodChannel?.invokeMethod("initializing", null)
         val adId = creationParams!!["id"] as String?
         val width = creationParams["width"] as Double
@@ -31,15 +32,13 @@ class BannerView(
             .viewWidth(width.toInt())
             .viewHight(height.toInt())
             .build()
-        TbManager.loadBanner(config, QBKJ.activity, object : TbManager.BannerLoadListener() {
+        TbManager.loadBanner(config, QBKJ.activity, object : TbManager.BannerLoadListener {
 
             override fun onClicked() {
                 methodChannel?.invokeMethod("onClick", null)
-                super.onClicked()
             }
             override fun onExposure() {
                 methodChannel?.invokeMethod("onShow", null)
-                super.onExposure()
             }
 
             override fun onFail(s: String) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:qbkj_mob/view/qbkj_banner_view.dart';
 import 'package:qbkj_mob/view/qbkj_feed_view.dart';
 
 class FeedPage extends StatelessWidget {

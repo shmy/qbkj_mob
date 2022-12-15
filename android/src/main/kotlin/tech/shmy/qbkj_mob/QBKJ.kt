@@ -50,7 +50,7 @@ object QBKJ {
             .codeId(adCode) //平台申请的代码位id
             .orientation(TbManager.Orientation.VIDEO_VERTICAL) //必填参数，期望视频的播放方向：VIDEO_HORIZONTAL 或 VIDEO_VERTICAL
             .build()
-        TbManager.loadInteraction(config, activity, object : InteractionLoadListener() {
+        TbManager.loadInteraction(config, activity, object : InteractionLoadListener {
             override fun onFail(s: String) {
                 queuingEventSink.success(
                     mapOf(
@@ -60,6 +60,9 @@ object QBKJ {
                 )
             }
 
+            override fun getSDKID(p0: Int?, p1: String?) {
+            }
+
             override fun onClicked() {
                 queuingEventSink.success(
                     mapOf(
@@ -67,7 +70,6 @@ object QBKJ {
                         "event" to "onClick",
                     )
                 )
-                super.onClicked()
             }
 
             override fun onExposure() {
@@ -77,7 +79,6 @@ object QBKJ {
                         "event" to "onShow",
                     )
                 )
-                super.onExposure()
             }
 
             override fun onDismiss() {
@@ -102,7 +103,10 @@ object QBKJ {
             .playNow(true) //是否立即播放
             .orientation(TbManager.Orientation.VIDEO_VERTICAL) //必填参数，期望视频的播放方向：VIDEO_HORIZONTAL 或 VIDEO_VERTICAL
             .build()
-        TbManager.loadRewardVideo(config, activity, object : TbManager.RewardVideoLoadListener() {
+        TbManager.loadRewardVideo(config, activity, object: TbManager.RewardVideoLoadListener {
+            override fun getSDKID(p0: Int?, p1: String?) {
+            }
+
             override fun onClick() {
                 queuingEventSink.success(
                     mapOf(
@@ -110,7 +114,6 @@ object QBKJ {
                         "event" to "onClick",
                     )
                 )
-                super.onClick()
             }
 
             override fun onExposure(p0: String?) {
@@ -120,10 +123,13 @@ object QBKJ {
                         "event" to "onShow",
                     )
                 )
-                super.onExposure(p0)
             }
 
             override fun onRewardVideoCached(p0: RewardPosition?) {
+            }
+
+            override fun onSkippedVideo() {
+
             }
 
             override fun onFail(p0: String?) {
