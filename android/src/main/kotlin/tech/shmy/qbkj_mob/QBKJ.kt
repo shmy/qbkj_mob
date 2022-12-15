@@ -29,7 +29,7 @@ object QBKJ {
     }
 
     fun initAd(appId: String, result: MethodChannel.Result) {
-        RequestPermission.RequestPermissionIfNecessary(activity);
+//        RequestPermission.RequestPermissionIfNecessary(activity);
         val config: TbInitConfig = TbInitConfig.Builder()
             .appId(appId) //初始化id（平台上申请：应用列表的应用id）
             .build()
