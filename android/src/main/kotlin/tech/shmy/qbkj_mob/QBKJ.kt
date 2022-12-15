@@ -35,11 +35,11 @@ object QBKJ {
 
         TbManager.init(context, config, object : TbManager.IsInitListener {
             override fun onFail(s: String?) {
-                result.success(false)
+//                result.success(false)
             }
 
             override fun onSuccess() {
-                result.success(true)
+//                result.success(true)
             }
         })
         result.success(true)
