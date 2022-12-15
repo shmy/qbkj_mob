@@ -50,25 +50,26 @@ android {
 
 dependencies {
 //    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation (name: 'android-query-full.0.26.7', ext: 'jar')
-    implementation (name: 'Baidu_MobAds_SDK_v9.241', ext: 'aar')
-    implementation (name: 'beizi_ad_sdk_3.4.20.15', ext: 'aar')
-    implementation (name: 'beizi_fusion_sdk_4.90.2.3', ext: 'aar')
-    implementation (name: 'fastjson-1.2.73', ext: 'jar')
-    implementation (name: 'GDTSDK.unionNormal.4.491.1361', ext: 'aar')
-    implementation (name: 'kssdk-ct-3.3.32', ext: 'aar')
-    implementation (name: 'oaid_sdk_1.0.25', ext: 'aar')
-    implementation (name: 'open_ad_sdk_4.8.0.8', ext: 'aar')
-    implementation (name: 'tb_lib_1.22.12.10_encrypted', ext: 'aar')
-    implementation (name: 'tb_mbridge', ext: 'aar')
-    implementation (name: 'tbs_sdk_thirdapp_v4.3.0.281_44181', ext: 'jar')
-    implementation (name: 'wind-common-1.4.0', ext: 'aar')
-    implementation (name: 'wind-sdk-4.8.2', ext: 'aar')
-    implementation (name: 'xlx_voice_ad_4.4.2.0', ext: 'aar')
-    implementation (name: 'YmSdk20220701.1', ext: 'aar')
-    implementation (name: 'zkmob_1.22.11.28', ext: 'aar')
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+//    implementation (name: 'android-query-full.0.26.7', ext: 'jar')
+//    implementation (name: 'Baidu_MobAds_SDK_v9.241', ext: 'aar')
+//    implementation (name: 'beizi_ad_sdk_3.4.20.15', ext: 'aar')
+//    implementation (name: 'beizi_fusion_sdk_4.90.2.3', ext: 'aar')
+//    implementation (name: 'fastjson-1.2.73', ext: 'jar')
+//    implementation (name: 'GDTSDK.unionNormal.4.491.1361', ext: 'aar')
+//    implementation (name: 'kssdk-ct-3.3.32', ext: 'aar')
+//    implementation (name: 'oaid_sdk_1.0.25', ext: 'aar')
+//    implementation (name: 'open_ad_sdk_4.8.0.8', ext: 'aar')
+//    implementation (name: 'tb_lib_1.22.12.10_encrypted', ext: 'aar')
+//    implementation (name: 'tb_mbridge', ext: 'aar')
+//    implementation (name: 'tbs_sdk_thirdapp_v4.3.0.281_44181', ext: 'jar')
+//    implementation (name: 'wind-common-1.4.0', ext: 'aar')
+//    implementation (name: 'wind-sdk-4.8.2', ext: 'aar')
+//    implementation (name: 'xlx_voice_ad_4.4.2.0', ext: 'aar')
+//    implementation (name: 'YmSdk20220701.1', ext: 'aar')
+//    implementation (name: 'zkmob_1.22.11.28', ext: 'aar')
 
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
 
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0' //加入 AndroidX V4 依赖支持库
