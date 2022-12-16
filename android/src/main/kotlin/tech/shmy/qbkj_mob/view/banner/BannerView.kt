@@ -2,7 +2,7 @@ package tech.shmy.qbkj_mob.view.banner
 
 import tech.shmy.qbkj_mob.Constant
 import android.view.View
-import android.widget.LinearLayout
+import android.widget.FrameLayout
 import com.tb.mob.TbManager
 import com.tb.mob.config.TbBannerConfig
 import io.flutter.plugin.common.BinaryMessenger
@@ -16,7 +16,7 @@ class BannerView(
     id: Int,
     creationParams: Map<String?, Any?>?
 ) : PlatformView {
-    private val container: LinearLayout = QBKJ.getEmptyContainer()
+    private val container: FrameLayout = QBKJ.getEmptyContainer()
     private var methodChannel: MethodChannel? =
         MethodChannel(messenger, Constant.bannerAdView + "_" + id)
 
