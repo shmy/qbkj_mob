@@ -37,8 +37,15 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  List<Widget> events = [];
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +55,7 @@ class App extends StatelessWidget {
       ),
       body: ListView(
         children: [
+          ...events,
           MaterialButton(
             color: Colors.blue,
             textColor: Colors.white,
@@ -91,18 +99,32 @@ class App extends StatelessWidget {
             color: Colors.blue,
             textColor: Colors.white,
             child: const Text('插屏广告'),
-            onPressed: () async {
+            onPressed: () {
+              setState(() {
+                events = [];
+              });
               QBKJAd.insertAd(
                 '1330513058157576258',
                 callback: QBKJCallback(
                   onShow: () {
-                    print('插屏广告 onShow');
+                    setState(() {
+                      events.add(Text('插屏广告 onShow'));
+                    });
                   },
                   onClick: () {
-                    print('插屏广告 onClick');
+                    setState(() {
+                      events.add(Text('插屏广告 onClick'));
+                    });
                   },
                   onClose: () {
-                    print('插屏广告 onClose');
+                    setState(() {
+                      events.add(Text('插屏广告 onClose'));
+                    });
+                  },
+                  onFail: () {
+                    setState(() {
+                      events.add(Text('插屏广告 onFail'));
+                    });
                   },
                 ),
               );
@@ -112,22 +134,43 @@ class App extends StatelessWidget {
             color: Colors.blue,
             textColor: Colors.white,
             child: const Text('激励广告'),
-            onPressed: () async {
+            onPressed: () {
+              setState(() {
+                events = [];
+              });
               QBKJAd.rewardAd(
                 '1330515047692124225',
                 userId: 'userId',
                 callback: QBKJCallback(
                   onShow: () {
-                    print('激励广告 onShow');
+                    setState(() {
+                      events.add(Text('激励广告 onShow'));
+                    });
                   },
                   onClick: () {
-                    print('激励广告 onClick');
+                    setState(() {
+                      events.add(Text('激励广告 onClick'));
+                    });
                   },
                   onClose: () {
-                    print('激励广告 onClose');
+                    setState(() {
+                      events.add(Text('激励广告 onClose'));
+                    });
+                  },
+                  onFail: () {
+                    setState(() {
+                      events.add(Text('激励广告 onFail'));
+                    });
+                  },
+                  onSkip: () {
+                    setState(() {
+                      events.add(Text('激励广告 onSkip'));
+                    });
                   },
                   onReward: () {
-                    print('激励广告 onReward');
+                    setState(() {
+                      events.add(Text('激励广告 onReward'));
+                    });
                   },
                 ),
               );

@@ -10,6 +10,9 @@ import com.tb.mob.bean.RewardPosition
 import com.tb.mob.config.TbInitConfig
 import com.tb.mob.config.TbInteractionConfig
 import com.tb.mob.config.TbRewardVideoConfig
+import com.tb.mob.utils.RequestPermission
+import io.flutter.plugin.common.BinaryMessenger
+import io.flutter.plugin.common.EventChannel
 import io.flutter.plugin.common.MethodChannel
 
 
@@ -17,6 +20,8 @@ import io.flutter.plugin.common.MethodChannel
 object QBKJ {
     lateinit var activity: Activity
     lateinit var context: Context
+    var insertAdId = -1
+    var rewardAdId = -1
     fun getEmptyContainer(): FrameLayout {
         val layoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
@@ -28,7 +33,7 @@ object QBKJ {
     }
 
     fun initAd(appId: String, result: MethodChannel.Result) {
-//        RequestPermission.RequestPermissionIfNecessary(activity);
+        RequestPermission.RequestPermissionIfNecessary(activity);
         val config: TbInitConfig = TbInitConfig.Builder()
             .appId(appId) //初始化id（平台上申请：应用列表的应用id）
             .build()
@@ -45,16 +50,30 @@ object QBKJ {
         result.success(true)
     }
 
-    fun insertAd(adCode: String, queuingEventSink: QueuingEventSink) {
+    fun insertAd(adCode: String, binaryMessenger: BinaryMessenger, result: MethodChannel.Result) {
         val config = TbInteractionConfig.Builder()
             .codeId(adCode) //平台申请的代码位id
             .orientation(TbManager.Orientation.VIDEO_VERTICAL) //必填参数，期望视频的播放方向：VIDEO_HORIZONTAL 或 VIDEO_VERTICAL
             .build()
+        insertAdId ++
+        val eventChannel = EventChannel(binaryMessenger, "insertAdEvent_$insertAdId")
+        var eventSink: EventChannel.EventSink? = null
+        eventChannel.setStreamHandler(object : EventChannel.StreamHandler{
+            override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
+                eventSink = events
+            }
+
+            override fun onCancel(arguments: Any?) {
+                eventSink = null
+            }
+
+        })
+        result.success(insertAdId)
+
         TbManager.loadInteraction(config, activity, object : InteractionLoadListener {
             override fun onFail(s: String) {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.insertAd,
                         "event" to "onError",
                     )
                 )
@@ -64,30 +83,28 @@ object QBKJ {
             }
 
             override fun onClicked() {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.insertAd,
                         "event" to "onClick",
                     )
                 )
             }
 
             override fun onExposure() {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.insertAd,
                         "event" to "onShow",
                     )
                 )
             }
 
             override fun onDismiss() {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.insertAd,
                         "event" to "onDismiss",
                     )
                 )
+                eventSink?.endOfStream()
             }
 
             override fun onVideoReady() {}
@@ -95,7 +112,7 @@ object QBKJ {
         })
     }
 
-    fun rewardAd(adCode: String, userId: String, queuingEventSink: QueuingEventSink) {
+    fun rewardAd(adCode: String, userId: String, binaryMessenger: BinaryMessenger, result: MethodChannel.Result) {
         val config = TbRewardVideoConfig.Builder()
             .codeId(adCode) //平台申请的代码位id
             .userId(userId) //必填参数，用户ID或者设备唯一标识（服务器回调时也需要）
@@ -103,23 +120,36 @@ object QBKJ {
             .playNow(true) //是否立即播放
             .orientation(TbManager.Orientation.VIDEO_VERTICAL) //必填参数，期望视频的播放方向：VIDEO_HORIZONTAL 或 VIDEO_VERTICAL
             .build()
-        TbManager.loadRewardVideo(config, activity, object: TbManager.RewardVideoLoadListener {
+        rewardAdId ++
+
+        val eventChannel = EventChannel(binaryMessenger, "rewardAdEvent_$rewardAdId")
+        var eventSink: EventChannel.EventSink? = null
+        eventChannel.setStreamHandler(object : EventChannel.StreamHandler{
+            override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
+                eventSink = events
+            }
+
+            override fun onCancel(arguments: Any?) {
+                eventSink = null
+            }
+
+        })
+        result.success(rewardAdId)
+        TbManager.loadRewardVideo(config, activity, object : TbManager.RewardVideoLoadListener {
             override fun getSDKID(p0: Int?, p1: String?) {
             }
 
             override fun onClick() {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.rewardAd,
                         "event" to "onClick",
                     )
                 )
             }
 
             override fun onExposure(p0: String?) {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.rewardAd,
                         "event" to "onShow",
                     )
                 )
@@ -129,31 +159,32 @@ object QBKJ {
             }
 
             override fun onSkippedVideo() {
-
+                eventSink?.success(
+                    mapOf(
+                        "event" to "onSkip",
+                    )
+                )
             }
 
             override fun onFail(p0: String?) {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.rewardAd,
                         "event" to "onError",
                     )
                 )
             }
 
             override fun onClose() {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.rewardAd,
                         "event" to "onDismiss",
                     )
                 )
             }
 
             override fun onRewardVerify() {
-                queuingEventSink.success(
+                eventSink?.success(
                     mapOf(
-                        "type" to Constant.rewardAd,
                         "event" to "onReward"
                     )
                 )

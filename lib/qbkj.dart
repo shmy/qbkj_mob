@@ -1,4 +1,3 @@
-export './core/stream_handler.dart';
 export './core/qbkj_ad.dart';
 export './core/qbkj_callback.dart';
 export './view/qbkj_banner_view.dart';
