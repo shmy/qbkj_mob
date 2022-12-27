@@ -20,8 +20,8 @@ import io.flutter.plugin.common.MethodChannel
 object QBKJ {
     lateinit var activity: Activity
     lateinit var context: Context
-    var insertAdId = -1
-    var rewardAdId = -1
+    private var insertAdId = -1
+    private var rewardAdId = -1
     fun getEmptyContainer(): FrameLayout {
         val layoutParams = FrameLayout.LayoutParams(
             FrameLayout.LayoutParams.MATCH_PARENT,
