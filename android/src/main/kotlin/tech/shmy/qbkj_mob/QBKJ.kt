@@ -77,6 +77,7 @@ object QBKJ {
                         "event" to "onError",
                     )
                 )
+                eventSink?.endOfStream()
             }
 
             override fun getSDKID(p0: Int?, p1: String?) {
@@ -172,6 +173,7 @@ object QBKJ {
                         "event" to "onError",
                     )
                 )
+                eventSink?.endOfStream()
             }
 
             override fun onClose() {
@@ -180,6 +182,7 @@ object QBKJ {
                         "event" to "onDismiss",
                     )
                 )
+                eventSink?.endOfStream()
             }
 
             override fun onRewardVerify() {
