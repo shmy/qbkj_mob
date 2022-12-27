@@ -49,7 +49,7 @@ android {
 }
 
 dependencies {
-    implementation (name: 'ssp_ad_content_sdk_v4.7.5', ext: 'aar')
+    implementation (name: 'ssp_ad_content_sdk_v4.8.0', ext: 'aar')
     implementation (name: 'android-query-full.0.26.7', ext: 'jar')
     implementation (name: 'Baidu_MobAds_SDK_v9.241', ext: 'aar')
     implementation (name: 'beizi_ad_sdk_3.4.20.15', ext: 'aar')
