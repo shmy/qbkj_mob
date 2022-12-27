@@ -22,6 +22,7 @@ class QBKJAd {
 
   static Future<void> insertAd(String adCode, { QBKJCallback? callback}) async {
     if (!isAndroid) {
+      callback?.onClose?.call();
       return;
     }
     final id = await _methodChannel.invokeMethod('insertAd', {
@@ -39,6 +40,7 @@ class QBKJAd {
     QBKJCallback? callback
   }) async {
     if (!isAndroid) {
+      callback?.onReward?.call();
       return;
     }
     final id = await _methodChannel.invokeMethod('rewardAd', {
